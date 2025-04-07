@@ -1,15 +1,23 @@
 #include <iostream>
-#include "TodoItem.h"
+#include "TodoManager.h"
 
 int main() {
-    TodoItem item("C++ 연습하기");
+    TodoManager manager;
 
-    std::cout << "할 일: " << item.getTask() << "\n";
-    std::cout << "완료 상태: " << (item.isDone() ? "완료" : "미완료") << "\n";
+    manager.addTask("C++ 공부하기");
+    manager.addTask("밥 먹기");
+    manager.addTask("헬스장 가기");
 
-    item.markDone();
-    std::cout << "완료 상태 변경 후: " << (item.isDone() ? "완료" : "미완료") << "\n";
-    std::cout << "파일 저장용: " << item.toString() << "\n";
+    std::cout << "할 일 목록:\n";
+    manager.listTasks();
+
+    manager.markTaskDone(1); // 인덱스 1 → 두 번째 할 일 완료
+    std::cout << "\n2번째 할 일 완료 처리 후:\n";
+    manager.listTasks();
+
+    manager.deleteTask(0);
+    std::cout << "\n첫 번째 할 일 삭제 후:\n";
+    manager.listTasks();
 
     return 0;
 }
